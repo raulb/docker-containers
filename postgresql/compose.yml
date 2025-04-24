@@ -1,0 +1,23 @@
+services:
+  custom-pg-0:
+    container_name: custom-pg-0
+    image: postgres:17
+    ports:
+      - "5432:5432"
+    volumes:
+      - "./docker-entrypoint-initdb.d/create_table_employees.sql:/docker-entrypoint-initdb.d/create_table_employees.sql"
+      - ./scripts:/scripts
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "meroxadb", "-U", "meroxauser" ]
+      timeout: 30s
+      interval: 10s
+      retries: 5
+    environment:
+      POSTGRES_USER: meroxauser
+      POSTGRES_PASSWORD: meroxapass
+      POSTGRES_DB: meroxadb
+      POSTGRES_INITDB_ARGS: "--data-checksums"
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+volumes:
+  custom-pg-0-data:
+    driver: local
