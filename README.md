@@ -2,28 +2,10 @@
 
 This is a collection of different Docker containers for various services I often use when testing [Conduit](https://github.com/ConduitIO/conduit).
 
-## PostgreSQL
+For every container, run `make` to see the available targets inside the container directory.
 
-### Setup
 
-```sh
-make setup
-```
+## Available containers
 
-### Connect
-
-```sh
-make connect
-```
-
-### Insert Data
-
-```sh
-make insert-data
-```
-
-### Clean
-
-```sh
-make clean
-```
+- [Kafka](./kafka)
+- [PostgreSQL](./postgresql)
